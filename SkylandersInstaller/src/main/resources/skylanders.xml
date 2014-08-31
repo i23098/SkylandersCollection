@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<skylanders>
+    <game title="Spyro's Adventure" name="spyros">
+        <category name="AIR">
+            <item>Whirlwind</item>
+            <item>Warnado</item>
+            <item>Sonic Boom</item>
+            <item>Lightning Rod</item>
+        </category>
+        <category name="EARTH">
+            <item>Bash</item>
+            <item>Dino-Rang</item>
+            <item>Prism Break</item>
+            <item>Terrafin</item>
+        </category>
+        <category name="FIRE">
+            <item>Ignitor</item>
+            <item>Sunburn</item>
+            <item>Flameslinger</item>
+            <item>Eruptor</item>
+        </category>
+        <category name="LIFE">
+            <item>Camo</item>
+            <item>Stump Smash</item>
+            <item>Zook</item>
+            <item>Stealth Elf</item>
+        </category>
+        <category name="MAGIC">
+            <item>Spyro</item>
+            <item>Double Trouble</item>
+            <item>Wrecking Ball</item>
+            <item>Voodood</item>
+        </category>
+        <category name="TECH">
+            <item>Boomer</item>
+            <item>Drill Sergeant</item>
+            <item>Drobot</item>
+            <item>Trigger Happy</item>
+        </category>
+        <category name="UNDEAD">
+            <item>Hex</item>
+            <item>Cynder</item>
+            <item>Chop Chop</item>
+            <item>Ghost Roaster</item>
+        </category>
+        <category name="WATER">
+            <item>Slam Bam</item>
+            <item>Zap</item>
+            <item>Wham-Shell</item>
+            <item>Gill Grunt</item>
+        </category>
+    </game>
+</skylanders>

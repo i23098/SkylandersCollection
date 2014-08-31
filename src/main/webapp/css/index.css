@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#game-list {
+    text-align: center;
+    padding: 0;
+}
+
+#game-list li {
+    display: inline-block;
+    list-style-type: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#game-list li:first-child {
+    margin-left: 0;
+}
+
+#figure-list-header {
+    text-align: center;
+}
+
+#elements-list {
+    margin-top: 0;
+    padding: 0;
+    vertical-align: top;
+    display: inline-block;
+    list-style: none;
+}
+
+#figure-list-container {
+    position: absolute;
+    width: 100%;
+}
+
+#figure-list {
+    float: left;
+    position: absolute;
+    top: 60px;
+    margin-left: 90px;
+    padding: 0;
+}
+
+#figure-list li {
+    cursor: pointer;
+    background-color: #e9e9e9;
+    border: 1px solid #d3d3d3;
+    display: inline-block;
+    width: 175px;
+    height: 205px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#figure-list li:hover {
+    background-color: #f3f3f3;
+}
+
+#figure-list li * {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#figure-list li .figure-name {
+    position: relative;
+    top: 5px;
+    font-size: 20px;
+    color: #0000a0;
+}
+
+#figure-list li img {
+    position: relative;
+    top: -5px;
+    width: 150px;
+    height: 150px;
+}
+
+#figure-list li .figure-owned {
+    background-image: url("checkbox.png");
+    height: 36px;
+    width: 38px;
+    position: relative;
+    top: -15px;
+}
+
+#figure-list li .figure-owned.owned {
+    background-position: -95px 0;
+}
+
+#figure-list li:hover .figure-owned.owned {
+    background-position: -48px 0;
+}
