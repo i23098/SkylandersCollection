@@ -1,12 +1,13 @@
 package collections.skylanders.installer;
 
-public enum Element {
+public enum ItemCategory {
     AIR("Air"), EARTH("Earth"), FIRE("Fire"), LIFE("Life"), MAGIC("Magic"),
-    TECH("Tech"), UNDEAD("Undead"), WATER("Water");
+    TECH("Tech"), UNDEAD("Undead"), WATER("Water"), MAGIC_ITEMS("Magic Items"),
+    ADVENTURE_PACKS("Adventure Packs");
     
     String str;
     
-    Element(String str) {
+    ItemCategory(String str) {
         this.str = str;
     }
     

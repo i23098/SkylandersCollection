@@ -49,5 +49,22 @@
             <item>Wham-Shell</item>
             <item>Gill Grunt</item>
         </category>
+        <category name="MAGIC_ITEMS">
+            <item>Anvil Rain</item>
+            <item>Pirate Ghost Swords</item>
+            <item>Healing Elixir</item>
+            <item>Hidden Treasure</item>
+            <item>Sky-Iron Shield</item>
+            <item>Sparx Dragonfly</item>
+            <item>Time Twister</item>
+            <item>Volcanic Vault</item>
+            <item>Winged Boots</item>
+        </category>
+        <category name="ADVENTURE_PACKS">
+            <item>Darklight Crypt</item>
+            <item>Dragon's Peak</item>
+            <item>Ice Cave</item>
+            <item>Pirate Ship</item>
+        </category>
     </game>
 </skylanders>
