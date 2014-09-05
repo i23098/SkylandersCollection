@@ -17,7 +17,6 @@
         evt.preventDefault();
         
         var element = $(this).parent().data('element');
-        var figureList = $('#figure-list').empty();
         
         colApi.item.getItemsWithOwnership(element.id).done(function(items) {
             console.log('elementEntryClick...');
