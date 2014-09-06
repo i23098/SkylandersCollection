@@ -23,7 +23,7 @@ public class Main {
             context.refresh();
         }
         
-    	try (InputStream xmlInputStream = Main.class.getClassLoader().getResourceAsStream("skylanders.xml")) {
+        try (InputStream xmlInputStream = Main.class.getClassLoader().getResourceAsStream("skylanders.xml")) {
             DocumentBuilderFactory xmlFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder xmlBuilder = xmlFactory.newDocumentBuilder();
             Document xmlDocument = xmlBuilder.parse(Main.class.getClassLoader().getResourceAsStream("skylanders.xml"));
@@ -35,8 +35,8 @@ public class Main {
             
             Installer installer = context.getBean(Installer.class);
             installer.install(gameReader);
-    	}
-    	
+        }
+        
         context.stop();
     }
 }

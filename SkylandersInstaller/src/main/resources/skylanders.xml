@@ -66,5 +66,83 @@
             <item>Ice Cave</item>
             <item>Pirate Ship</item>
         </category>
+        <category name="INGAME_VARIANTS">
+            <item>Dark Spyro</item>
+            <item>Legendary Bash</item>
+            <item>Legendary Chop Chop</item>
+            <item>Legendary Spyro</item>
+            <item>Legendary Trigger Happy</item>
+            <item>Sidekick Gill Runt</item>
+            <item>Sidekick Terrabite</item>
+            <item>Sidekick Trigger Snappy</item>
+            <item>Sidekick Whisper Elf</item>
+        </category>
+    </game>
+    
+    <game title="Giants" name="giants">
+        <category name="AIR">
+            <item>Swarm</item>
+            <item>Jet-Vac LightCore</item>
+            <item>Sonic Boom</item>
+            <item>Whirlwind</item>
+            <item>Lightning Rod</item>
+            <item>Jet-Vac</item>
+        </category>
+        <category name="EARTH">
+            <item>Crusher</item>
+            <item>Prism Break LightCore</item>
+            <item>Terrafin</item>
+            <item>Bash</item>
+            <item>Prism Break</item>
+            <item>Flashwing</item>
+        </category>
+        <category name="FIRE">
+            <item>Hot Head</item>
+            <item>Eruptor LightCore</item>
+            <item>Ignitor</item>
+            <item>Eruptor</item>
+            <item>Flameslinger</item>
+            <item>Hot Dog</item>
+        </category>
+        <category name="LIFE">
+            <item>Tree Rex</item>
+            <item>Shroomboom LightCore</item>
+            <item>Stealth Elf</item>
+            <item>Zook</item>
+            <item>Stump Smash</item>
+            <item>Shroomboom</item>
+        </category>
+        <category name="MAGIC">
+            <item>Ninjini</item>
+            <item>Pop Fizz LightCore</item>
+            <item>Spyro</item>
+            <item>Wrecking Ball</item>
+            <item>Double Trouble</item>
+            <item>Pop Fizz</item>
+        </category>
+        <category name="TECH">
+            <item>Bouncer</item>
+            <item>Drobot LightCore</item>
+            <item>Drill Sergeant</item>
+            <item>Trigger Happy</item>
+            <item>Drobot</item>
+            <item>Sprocket</item>
+        </category>
+        <category name="UNDEAD">
+            <item>Eye-Brawl</item>
+            <item>Hex LightCore</item>
+            <item>Cynder</item>
+            <item>Chop Chop</item>
+            <item>Hex</item>
+            <item>Fright Rider</item>
+        </category>
+        <category name="WATER">
+            <item>Thumpback</item>
+            <item>Chill LightCore</item>
+            <item>Slam Bam</item>
+            <item>Zap</item>
+            <item>Gill Grunt</item>
+            <item>Chill</item>
+        </category>
     </game>
 </skylanders>
