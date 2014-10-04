@@ -2,11 +2,14 @@
     var onFigureClick = function() {
         var container = $(this);
         var item = container.data('item');
+        var categoryId = container.data('categoryId');
         
-        colApi.item.setOwner(item.id, !item.isOwned).done(function(isOwned) {
-            item.isOwned = isOwned;
+        colApi.item.update(categoryId, {
+            'id': item.id,
+            'owned': !item.owned
+        }).done(function(item) {
             container.data('item', item);
-            container.find('.figure-owned').toggleClass('owned', item.isOwned);
+            container.find('.figure-owned').toggleClass('owned', item.owned);
         });
     };
     
@@ -16,9 +19,9 @@
     var onElementEntryClick = function(evt) {
         evt.preventDefault();
         
-        var element = $(this).parent().data('element');
+        var category = $(this).parent().data('element');
         
-        colApi.item.getItemsWithOwnership(element.id).done(function(items) {
+        colApi.item.list(category.id).done(function(items) {
             console.log('elementEntryClick...');
             console.log(items);
             
@@ -28,10 +31,10 @@
                     $('<li />').append(
                         $('<span />', {'class': 'figure-name'}).text(item.title)
                     ).append(
-                        $('<img />', {'src': colApi.item.getImgUrl(item.id)})
+                        $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
                     ).append(
-                        $('<span />', {'class': 'figure-owned' + (item.isOwned ? ' owned' : '')})
-                    ).data('item', item).click(onFigureClick)
+                        $('<span />', {'class': 'figure-owned' + (item.owned ? ' owned' : '')})
+                    ).data('item', item).data('categoryId', category.id).click(onFigureClick)
                 );
             });
         });
