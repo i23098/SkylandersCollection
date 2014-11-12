@@ -1,52 +1,39 @@
-apply plugin: 'war'
+allprojects {
+	repositories {
+	    mavenCentral()
+	    maven { url 'http://repo.spring.io/libs-release' }
+	}
 
-apply plugin: 'eclipse-wtp'
+	ext {
+	    libraries = [:]
+	}
 
-repositories {
-    mavenCentral()
-    maven { url 'http://repo.spring.io/libs-release' }
+	libraries.mysqlConnector = 'mysql:mysql-connector-java:5.1.31'
+    libraries.gson = 'com.google.code.gson:gson:2.3'
+	libraries.jackson = [
+	    'com.fasterxml.jackson.core:jackson-core:2.4.0',
+	    'com.fasterxml.jackson.core:jackson-databind:2.4.0'
+	]
+	libraries.servletApi='javax.servlet:javax.servlet-api:3.1.0'
+	libraries.spring = [:]
+	libraries.spring.jdbc = [
+	    'org.springframework:spring-jdbc:4.0.5.RELEASE',
+	    'org.springframework:spring-tx:4.0.5.RELEASE',
+	]
+	libraries.spring.mvc = [
+	    'org.springframework:spring-webmvc:4.0.5.RELEASE',
+	    libraries.jackson
+	]
+	libraries.spring.di = [
+	    'org.springframework:spring-context:4.0.5.RELEASE'
+	]
+	libraries.slf = 'org.slf4j:slf4j-api:1.7.7'
+	libraries.slfLogback = [
+	    'ch.qos.logback:logback-classic:1.1.2',
+	    'ch.qos.logback:logback-core:1.1.2'
+	]
 }
-
-ext {
-    libraries = [:]
-}
-
-libraries.mysqlConnector = 'mysql:mysql-connector-java:5.1.31'
-libraries.jackson = [
-    'com.fasterxml.jackson.core:jackson-core:2.4.0',
-    'com.fasterxml.jackson.core:jackson-databind:2.4.0'
-]
-libraries.servletApi='javax.servlet:javax.servlet-api:3.1.0'
-libraries.spring = [:]
-libraries.spring.jdbc = [
-    'org.springframework:spring-jdbc:4.0.5.RELEASE',
-    'org.springframework:spring-tx:4.0.5.RELEASE',
-]
-libraries.spring.mvc = [
-    'org.springframework:spring-webmvc:4.0.5.RELEASE',
-    libraries.jackson
-]
-libraries.spring.di = [
-    'org.springframework:spring-context:4.0.5.RELEASE'
-]
-libraries.slf = 'org.slf4j:slf4j-api:1.7.7'
-libraries.slfLogback = [
-    'ch.qos.logback:logback-classic:1.1.2',
-    'ch.qos.logback:logback-core:1.1.2'
-]
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
+    gradleVersion = '2.0'
 }
-
-dependencies {
-    providedCompile libraries.servletApi
-    
-    compile(libraries.spring.mvc)
-    compile(libraries.spring.di)
-    compile(libraries.slf)
-    
-    runtime(libraries.mysqlConnector)
-    runtime(libraries.slfLogback)
-}
-

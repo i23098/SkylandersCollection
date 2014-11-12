@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repo.spring.io/libs-release' }
+    ivy {
+        flatDir {
+            dirs '/home/ralmeida/workspace-collections/Collections/colPersistence/build/libs', '/home/ralmeida/workspace-collections/Collections/colServer/build/libs', '/home/ralmeida/workspace-collections/Collections/colServerAPI/build/libs', '/home/ralmeida/workspace-collections/Collections/colUtil/build/libs'
+        }
+        ivyPattern "[artifact].[ext]"
+    }
+}
+
+dependencies {
+    compile project(':Skylanders')
+    
+    compile(libraries.spring.di)
+    compile(libraries.gson)
+    compile('colServerAPI:colServerAPI:snapshot')
+    
+    runtime(libraries.mysqlConnector)
+    
+    runtime(libraries.spring.jdbc)
+    runtime(libraries.spring.di)
+    
+    runtime('colServer:colServer:snapshot')
+    runtime('colPersistence:colPersistence:snapshot')
+    runtime('colUtil:colUtil:snapshot')
+}

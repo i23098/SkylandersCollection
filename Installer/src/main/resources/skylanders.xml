@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<skylanders>
+    <game name="SPYROS" title="Spyro's Adventure">
+        <figures>
+            <figure type="BASH" name="Bash" />
+            <figure type="BOOMER" name="Boomer" />
+            <figure type="CAMO" name="Camo" />
+            <figure type="CHOP_CHOP" name="Chop-Chop" />
+            <figure type="CYNDER" name="Cynder" />
+            <figure type="DINO_RANG" name="Dino-Rang" />
+            <figure type="DOUBLE_TROUBLE" name="Double Trouble" />
+            <figure type="DRILL_SERGEANT" name="Drill Sergeant" />
+            <figure type="DROBOT" name="Drobot" />
+            <figure type="ERUPTOR" name="Eruptor" />
+            <figure type="FLAMESLINGER" name="Flameslinger" />
+            <figure type="GHOST_ROASTER" name="Ghost Roaster" />
+            <figure type="GILL_GRUNT" name="Gill Grunt" />
+            <figure type="HEX" name="Hex" />
+            <figure type="IGNITOR" name="Ignitor" />
+            <figure type="LIGHTNING_ROD" name="Lightning Rod" />
+            <figure type="PRISM_BREAK" name="Prism Break" />
+            <figure type="SLAM_BAM" name="Slam Bam" />
+            <figure type="SONIC_BOOM" name="Sonic Boom" />
+            <figure type="SPYRO" name="Spyro" />
+            <figure type="STEALTH_ELF" name="Stealth Elf" />
+            <figure type="STUMP_SMASH" name="Stump Smash" />
+            <figure type="SUNBURN" name="Sunburn" />
+            <figure type="TERRAFIN" name="Terrafin" />
+            <figure type="TRIGGER_HAPPY" name="Trigger Happy" />
+            <figure type="VOODOOD" name="Voodood" />
+            <figure type="WARNADO" name="Warnado" />
+            <figure type="WHAM_SHELL" name="Wham-Shell" />
+            <figure type="WHIRLWIND" name="Whirlwind" />
+            <figure type="WRECKING_BALL" name="Wrecking Ball" />
+            <figure type="ZAP" name="Zap" />
+            <figure type="ZOOK" name="Zook" />
+            
+            <figure type="SPYRO" variant="DARK" name="Dark Spyro" />
+            <figure type="BASH" variant="LEGENDARY" name="Legendary Bash" />
+            <figure type="CHOP_CHOP" variant="LEGENDARY" name="Legendary Chop Chop" />
+            <figure type="SPYRO" variant="LEGENDARY" name="Legendary Spyro" />
+            <figure type="TRIGGER_HAPPY" variant="LEGENDARY" name="Legendary Trigger Happy" />
+            <figure type="GILL_GRUNT" variant="SIDEKICK" name="Sidekick Gill Runt" />
+            <figure type="TERRAFIN" variant="SIDEKICK" name="Sidekick Terrabite" />
+            <figure type="TRIGGER_HAPPY" variant="SIDEKICK" name="Sidekick Trigger Snappy" />
+            <figure type="STEALTH_ELF" variant="SIDEKICK" name="Sidekick Whisper Elf" />
+        </figures>
+        
+        <items>        
+            <item type="ANVIL_RAIN" name="Anvil Rain" />
+            <item type="DARKLIGHT_CRYPT" name="Darklight Crypt" />
+            <item type="DRAGONS_PEAK" name="Dragon's Peak" />
+            <item type="GHOST_SWORDS" name="Ghost Swords" />
+            <item type="HEALING_ELIXIR" name="Healing Elixir" />
+            <item type="HIDDEN_TREASURE" name="Hidden Treasure" />
+            <item type="ICE_CAVE" name="Ice Cave" />
+            <item type="PIRATE_SHIP" name="Pirate Ship" />
+            <item type="SKY_IRON_SHIELD" name="Sky-Iron Shield" />
+            <item type="SPARX_DRAGONFLY" name="Sparx Dragonfly" />
+            <item type="TIME_TWISTER" name="Time Twister" />
+            <item type="VOLCANIC_VAULT" name="Volcanic Vault" />
+            <item type="WINGED_BOOTS" name="Winged Boots" />
+        </items>
+    </game>
+    
+    <game name="GIANTS" title="Giants">
+        <figures>
+            <figure type="BOUNCER" variant="GIANT" name="Bouncer" />
+            <figure type="CRUSHER" variant="GIANT" name="Crusher" />
+            <figure type="EYE_BRAWL" variant="GIANT" name="Eye-Brawl" />
+            <figure type="HOT_HEAD" variant="GIANT" name="Hot Head" />
+            <figure type="NINJINI" variant="GIANT" name="Ninjini" />
+            <figure type="SWARM" variant="GIANT" name="Swarm" />
+            <figure type="THUMPBACK" variant="GIANT" name="Thumpback" />
+            <figure type="TREE_REX" variant="GIANT" name="Tree Rex" />
+            
+            <figure type="CHILL" name="Chill" />
+            <figure type="FLASHWING" name="Flashwing" />
+            <figure type="FRIGHT_RIDER" name="Fright Rider" />
+            <figure type="HOT_DOG" name="Hot Dog" />
+            <figure type="JET_VAC" name="Jet-Vac" />
+            <figure type="POP_FIZZ" name="Pop Fizz" />
+            <figure type="SHROOMBOOM" name="Shroomboom" />
+            <figure type="SPROCKET" name="Sprocket" />
+            
+            <figure type="BASH" series="2" name="Bash" />
+            <figure type="CHOP_CHOP" series="2" name="Chop Chop" />
+            <figure type="CYNDER" series="2" name="Cynder" />
+            <figure type="DOUBLE_TROUBLE" series="2" name="Double Trouble" />
+            <figure type="DRILL_SERGEANT" series="2" name="Drill Sergeant" />
+            <figure type="DROBOT" series="2" name="Drobot" />
+            <figure type="ERUPTOR" series="2" name="Eruptor" />
+            <figure type="FLAMESLINGER" series="2" name="Flameslinger" />
+            <figure type="GILL_GRUNT" series="2" name="Gill Grunt" />
+            <figure type="HEX" series="2" name="Hex" />
+            <figure type="IGNITOR" series="2" name="Ignitor" />
+            <figure type="LIGHTNING_ROD" series="2" name="Lightning Rod" />
+            <figure type="PRISM_BREAK" series="2" name="Prism Break" />
+            <figure type="SLAM_BAM" series="2" name="Slam Bam" />
+            <figure type="SONIC_BOOM" series="2" name="Sonic Boom" />
+            <figure type="SPYRO" series="2" name="Spyro" />
+            <figure type="STEALTH_ELF" series="2" name="Stealth Elf" />
+            <figure type="STUMP_SMASH" series="2" name="Stump Smash" />
+            <figure type="TERRAFIN" series="2" name="Terrafin" />
+            <figure type="TRIGGER_HAPPY" series="2" name="Trigger Happy" />
+            <figure type="WHIRLWIND" series="2" name="Whirlwind" />
+            <figure type="WRECKING_BALL" series="2" name="Wrecking Ball" />
+            <figure type="ZAP" series="2" name="Zap" />
+            <figure type="ZOOK" series="2" name="Zook" />
+            
+            <figure type="CHILL" variant="LIGHTCORE" name="Chill LightCore" />
+            <figure type="DROBOT" variant="LIGHTCORE" name="Drobot LightCore" />
+            <figure type="ERUPTOR" variant="LIGHTCORE" name="Eruptor LightCore" />
+            <figure type="HEX" variant="LIGHTCORE" name="Hex LightCore" />
+            <figure type="JET_VAC" variant="LIGHTCORE" name="Jet-Vac LightCore" />
+            <figure type="POP_FIZZ" variant="LIGHTCORE" name="Pop Fizz LightCore" />
+            <figure type="PRISM_BREAK" variant="LIGHTCORE" name="Prism Break LightCore" />
+            <figure type="SHROOMBOOM" variant="LIGHTCORE" name="Shroomboom LightCore" />
+            
+            <!-- missing Legendary variants, at least -->
+        </figures>
+        
+        <!-- items>        
+            <item type="DRAGONFIRE_CANON" name="Dragonfire Canon" />
+            <item type="GOLDEN_DRAGONFIRE_CANON" name="Golden Dragonfire Canon" />
+            <item type="PLATINUM_TREASURE_CHEST" name="Platinum Treasure Chest" />
+            <item type="SCORPION_STRIKER_CATAPULT" name="Scorpion Striker Catapult" />
+        </items -->
+    </game>
+    
+    <game name="SWAP_FORCE" title="Swap Force">
+    </game>
+    
+    <game name="TRAP_TEAM" title="Trap Team">
+    </game>
+</skylanders>

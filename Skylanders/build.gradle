@@ -1,0 +1,14 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+dependencies {
+    providedCompile libraries.servletApi
+    
+    compile(libraries.spring.mvc)
+    compile(libraries.spring.di)
+    compile(libraries.slf)
+    
+    runtime(libraries.mysqlConnector)
+    runtime(libraries.slfLogback)
+}
+
