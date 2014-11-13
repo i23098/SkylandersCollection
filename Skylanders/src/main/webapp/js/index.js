@@ -9,34 +9,7 @@
             'owned': !item.owned
         }).done(function(item) {
             container.data('item', item);
-            container.find('.figure-owned').toggleClass('owned', item.owned);
-        });
-    };
-    
-    /**
-     * onElementEntryClick
-     */
-    var onElementEntryClick = function(evt) {
-        evt.preventDefault();
-        
-        var category = $(this).parent().data('element');
-        
-        colApi.item.list(category.id).done(function(items) {
-            console.log('elementEntryClick...');
-            console.log(items);
-            
-            var figureList = $('#figure-list').empty();
-            items.forEach(function(item) {
-                figureList.append( 
-                    $('<li />').append(
-                        $('<span />', {'class': 'figure-name'}).text(item.title)
-                    ).append(
-                        $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
-                    ).append(
-                        $('<span />', {'class': 'figure-owned' + (item.owned ? ' owned' : '')})
-                    ).data('item', item).data('categoryId', category.id).click(onFigureClick)
-                );
-            });
+            container.toggleClass('owned', item.owned).toggleClass('not-owned', !item.owned);
         });
     };
     
@@ -54,17 +27,20 @@
         $('#figure-list-container').css('display', '');
         $('#figure-list-header').text(category.title);
         
-        console.log('clicked...');
-        console.log(category);
-        
-        colApi.category.getCategories(category.id).done(function(elements) {
-            $('#figure-list').empty();
-            
-            var elementsList = $('#elements-list').empty();
-            elements.forEach(function(element) {
-                elementsList.append(
-                    $('<li />').data('element', element).append(
-                        $('<a />', {'href': '#'}).text(element.title).click(onElementEntryClick)
+        colApi.item.list(category.id).done(function(items) {
+            var figureList = $('#figure-list').empty();
+            items.forEach(function(item) {
+                figureList.append( 
+                    $('<li />').append(
+                        $('<div />', {
+                            'class': 'figure ' + (item.owned ? '' : ' not-') + 'owned'
+                        }).append(
+                            $('<span />', {'class': 'figure-name'}).text(item.title)
+                        ).append(
+                            $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
+                        ).append(
+                            $('<span />', {'class': 'figure-owned'})
+                        ).data('item', item).data('categoryId', category.id).click(onFigureClick)
                     )
                 );
             });
@@ -133,12 +109,7 @@
         }
         
         colApi.category.getTopLevelCategories().done(function(categories) {
-            console.log('getTopLevelCategories');
-            console.log(categories);
-            
-            categories.forEach(function(category) {
-                addGameListEntry(category);
-            });
+            categories.forEach(addGameListEntry);
             
             $('#game-list').sortable({'update': onGameListSort});
             

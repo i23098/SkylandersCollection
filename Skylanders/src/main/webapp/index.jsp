@@ -23,7 +23,6 @@
 
 <div id="figure-list-container" style="display: none">
 <h1 id="figure-list-header"></h1>
-<ul id="elements-list"></ul>
 <ul id="figure-list"></ul>
 </div>
 </body>
