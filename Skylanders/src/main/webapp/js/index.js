@@ -39,7 +39,7 @@
                         ).append(
                             $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
                         ).append(
-                            $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick)
+                            $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick).mouseover(function() { $(this).closest('div.figure').addClass('highlight') }).mouseout(function() { $(this).closest('div.figure').removeClass('highlight') })
                         ).data('item', item).data('categoryId', category.id)
                     )
                 );

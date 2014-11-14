@@ -47,37 +47,45 @@ body {
     margin-bottom: 10px;
 }
 
-#figure-list li:hover {
-    background-color: #f3f3f3;
-}
-
-#figure-list li * {
+#figure-list .figure {
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-}
-
-#figure-list li .figure-name {
-    position: absolute;
     width: 100%;
+    height: 100%;
+}
+
+#figure-list .figure.highlight {
+    background-color: #f3f3f3;
+}
+
+#figure-list .figure .figure-name {
+    position: absolute;
     top: 5px;
-    font-size: 20px;
+    left: 0;
     color: #0000a0;
+    font-size: 20px;
+    width: 100%;
 }
 
-#figure-list li .figure img {
-    position: relative;
-    top: 20px;
-    width: 150px;
+#figure-list .figure.not-owned .figure-name {
+    color: #c0c0e0;
+}
+
+#figure-list .figure img {
     height: 150px;
+    position: relative;
+    top: 25px;
+    width: 150px;
 }
 
-#figure-list li:hover .figure.owned img {
+#figure-list .figure.owned.highlight img {
     opacity: 0.5;
 }
 
-#figure-list li .figure.not-owned img {
+#figure-list .figure.not-owned img,
+#figure-list .figure.not-owned .figure-owned {
     /* http://stackoverflow.com/questions/286275/gray-out-image-with-css */
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
     filter: grayscale(100%);
@@ -90,19 +98,24 @@ body {
     opacity: 0.5;
 }
 
-#figure-list li .figure .figure-owned {
-    cursor: pointer;
-    background-image: url("checkbox.png");
-    height: 36px;
-    width: 38px;
-    position: relative;
-    top: 5px;
+#figure-list .figure.not-owned.highlight img,
+#figure-list .figure.not-owned.highlight .figure-owned {
+    opacity: 0.3;
 }
 
-#figure-list li .figure.owned .figure-owned {
+#figure-list .figure .figure-owned {
+    background-image: url("checkbox.png");
+    cursor: pointer;
+    display: inline-block;
+    width: 38px;
+    height: 36px;
+    margin-top: 5px;
+}
+
+#figure-list .figure.owned .figure-owned {
     background-position: -95px 0;
 }
 
-#figure-list li:hover .figure.owned .figure-owned {
+#figure-list .figure.owned.highlight .figure-owned {
     background-position: -48px 0;
 }
