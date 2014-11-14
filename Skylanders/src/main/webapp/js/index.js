@@ -1,6 +1,6 @@
 (function() {
-    var onFigureClick = function() {
-        var container = $(this);
+    var onFigureOwnedClick = function() {
+        var container = $(this).closest('div.figure');
         var item = container.data('item');
         var categoryId = container.data('categoryId');
         
@@ -39,8 +39,8 @@
                         ).append(
                             $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
                         ).append(
-                            $('<span />', {'class': 'figure-owned'})
-                        ).data('item', item).data('categoryId', category.id).click(onFigureClick)
+                            $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick)
+                        ).data('item', item).data('categoryId', category.id)
                     )
                 );
             });
