@@ -2,15 +2,12 @@ package collections.skylanders.installer;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import collections.serverapi.Item;
-import collections.serverapi.service.CategoryService;
-import collections.serverapi.service.ItemService;
-import collections.serverapi.service.UserService;
+import collections.serverapi.service.CollectionsTransactionalService;
+import collections.serverapi.service.CollectionsTransactionalServiceFactory;
 import collections.skylanders.ItemType;
 import collections.skylanders.installer.reader.Reader;
 import collections.skylanders.installer.reader.entry.FigureEntry;
@@ -21,17 +18,7 @@ import collections.skylanders.installer.reader.entry.ObjectEntry;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-@Component
 public class Installer {
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    CategoryService categoryService;
-    
-    @Autowired
-    ItemService<JsonElement> itemService;
-    
     private collections.serverapi.Category getCategory(List<collections.serverapi.Category> categoryList, String gameTitle) {
         for (collections.serverapi.Category category : categoryList) {
             if (category.getTitle().equals(gameTitle)) {
@@ -52,56 +39,60 @@ public class Installer {
         return null;
     }
     
-    public void install(Reader<GameEntry> gameXmlReader) throws IOException {
-        List<collections.serverapi.Category> gameCategoryList = categoryService.getTopLevelCategories();
-        
-        while (gameXmlReader.hasNext()) {
-            GameEntry gameEntry = gameXmlReader.next();
+    public void install(Reader<GameEntry> gameXmlReader) throws IOException, SQLException {
+        try (CollectionsTransactionalService<JsonElement> service = CollectionsTransactionalServiceFactory.begin()) {
+            List<collections.serverapi.Category> gameCategoryList = service.category().getTopLevelCategories();
             
-            String imgDir = "/images/" + getCamelCase(gameEntry.game.toString()) + "/";
-            
-            collections.serverapi.Category gameCategory = getCategory(gameCategoryList, gameEntry.title);
-            if (gameCategory == null) {
-                System.out.println(gameEntry.title);
+            while (gameXmlReader.hasNext()) {
+                GameEntry gameEntry = gameXmlReader.next();
                 
-                try (InputStream imgStream = Main.class.getResourceAsStream(imgDir + "game.png")) {
-                    gameCategory = categoryService.addTopLevel(gameEntry.title, imgStream);
+                String imgDir = "/images/" + getCamelCase(gameEntry.game.toString()) + "/";
+                
+                collections.serverapi.Category gameCategory = getCategory(gameCategoryList, gameEntry.title);
+                if (gameCategory == null) {
+                    System.out.println(gameEntry.title);
+                    
+                    try (InputStream imgStream = Main.class.getResourceAsStream(imgDir + "game.png")) {
+                        gameCategory = service.category().addTopLevel(gameEntry.title, imgStream);
+                    }
+                }
+                
+                List<Item<JsonElement>> objectList = service.item().getItems(gameCategory.getId());
+                while (gameEntry.objectReader.hasNext()) {
+                    ObjectEntry objectEntry = gameEntry.objectReader.next();
+                    
+                    Item<JsonElement> objectItem = getItem(objectList, objectEntry.getName());
+                    if (objectItem == null) {
+                        System.out.println(objectEntry.getName());
+                        
+                        JsonObject extra = new JsonObject();
+                        String imgFileName = imgDir;
+                        if (objectEntry instanceof FigureEntry) {
+                        	FigureEntry figureEntry = (FigureEntry) objectEntry;
+                        	
+                        	extra.addProperty("figure", figureEntry.getFigure().toString());
+                        	extra.addProperty("series", figureEntry.getSeries());
+                        	if (figureEntry.getVariant() != null) {
+                                imgFileName += "inGameVariants/";
+                        		extra.addProperty("variant", figureEntry.getVariant().toString());
+                        	}
+                        } else { // ItemEntry
+                        	ItemEntry itemEntry = (ItemEntry) objectEntry;
+                        	
+                        	extra.addProperty("item", itemEntry.getItem().toString());
+                        	
+                            imgFileName += (itemEntry.getItem().getType() == ItemType.ADVENTURE_PACK ? "adventurePacks/" : "magicItems/");
+                        }
+                		imgFileName += getCamelCase(objectEntry.getName()) + ".png";
+                        
+                        try (InputStream imgStream = Main.class.getResourceAsStream(imgFileName)) {
+                        	Item<JsonElement> item = service.item().add(objectEntry.getName(), extra, imgStream, gameCategory.getId());
+                        }
+                    }
                 }
             }
             
-            List<Item<JsonElement>> objectList = itemService.getItems(gameCategory.getId());
-            while (gameEntry.objectReader.hasNext()) {
-                ObjectEntry objectEntry = gameEntry.objectReader.next();
-                
-                Item<JsonElement> objectItem = getItem(objectList, objectEntry.getName());
-                if (objectItem == null) {
-                    System.out.println(objectEntry.getName());
-                    
-                    JsonObject extra = new JsonObject();
-                    String imgFileName = imgDir;
-                    if (objectEntry instanceof FigureEntry) {
-                    	FigureEntry figureEntry = (FigureEntry) objectEntry;
-                    	
-                    	extra.addProperty("figure", figureEntry.getFigure().toString());
-                    	extra.addProperty("series", figureEntry.getSeries());
-                    	if (figureEntry.getVariant() != null) {
-                            imgFileName += "inGameVariants/";
-                    		extra.addProperty("variant", figureEntry.getVariant().toString());
-                    	}
-                    } else { // ItemEntry
-                    	ItemEntry itemEntry = (ItemEntry) objectEntry;
-                    	
-                    	extra.addProperty("item", itemEntry.getItem().toString());
-                    	
-                        imgFileName += (itemEntry.getItem().getType() == ItemType.ADVENTURE_PACK ? "adventurePacks/" : "magicItems/");
-                    }
-            		imgFileName += getCamelCase(objectEntry.getName()) + ".png";
-                    
-                    try (InputStream imgStream = Main.class.getResourceAsStream(imgFileName)) {
-                    	Item<JsonElement> item = itemService.add(objectEntry.getName(), extra, imgStream, gameCategory.getId());
-                    }
-                }
-            }
+            service.commit();
         }
     }
     

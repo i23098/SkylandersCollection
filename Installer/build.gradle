@@ -14,14 +14,10 @@ repositories {
 dependencies {
     compile project(':Skylanders')
     
-    compile(libraries.spring.di)
     compile(libraries.gson)
     compile('colServerAPI:colServerAPI:snapshot')
     
     runtime(libraries.mysqlConnector)
-    
-    runtime(libraries.spring.jdbc)
-    runtime(libraries.spring.di)
     
     runtime('colServer:colServer:snapshot')
     runtime('colPersistence:colPersistence:snapshot')
