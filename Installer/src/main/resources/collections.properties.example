@@ -4,4 +4,3 @@ datasource.url=jdbc:mysql://localhost:3306/collection?useUnicode=true&amp;charac
 dadasource.username=collection_usr
 dadasource.password=collection1234
 imgDirProp=/home/ralmeida/tomcat/webapps/colWebAPI/images/
-itemServiceExtraConverter=collections.skylanders.installer.service.JsonItemServiceExtraConverter

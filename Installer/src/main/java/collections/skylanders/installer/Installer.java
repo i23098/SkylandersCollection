@@ -15,7 +15,6 @@ import collections.skylanders.installer.reader.entry.GameEntry;
 import collections.skylanders.installer.reader.entry.ItemEntry;
 import collections.skylanders.installer.reader.entry.ObjectEntry;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class Installer {
@@ -29,8 +28,8 @@ public class Installer {
         return null;
     }
     
-    private Item<JsonElement> getItem(List<Item<JsonElement>> itemList, String title) {
-        for (Item<JsonElement> item : itemList) {
+    private Item getItem(List<Item> itemList, String title) {
+        for (Item item : itemList) {
             if (item.getTitle().equals(title)) {
                 return item;
             }
@@ -40,7 +39,7 @@ public class Installer {
     }
     
     public void install(Reader<GameEntry> gameXmlReader) throws IOException, SQLException {
-        try (CollectionsTransactionalService<JsonElement> service = CollectionsTransactionalServiceFactory.begin()) {
+        try (CollectionsTransactionalService service = CollectionsTransactionalServiceFactory.begin()) {
             List<collections.serverapi.Category> gameCategoryList = service.category().getTopLevelCategories();
             
             while (gameXmlReader.hasNext()) {
@@ -57,36 +56,36 @@ public class Installer {
                     }
                 }
                 
-                List<Item<JsonElement>> objectList = service.item().getItems(gameCategory.getId());
+                List<Item> objectList = service.item().getItems(gameCategory.getId());
                 while (gameEntry.objectReader.hasNext()) {
                     ObjectEntry objectEntry = gameEntry.objectReader.next();
                     
-                    Item<JsonElement> objectItem = getItem(objectList, objectEntry.getName());
+                    Item objectItem = getItem(objectList, objectEntry.getName());
                     if (objectItem == null) {
                         System.out.println(objectEntry.getName());
                         
                         JsonObject extra = new JsonObject();
                         String imgFileName = imgDir;
                         if (objectEntry instanceof FigureEntry) {
-                        	FigureEntry figureEntry = (FigureEntry) objectEntry;
-                        	
-                        	extra.addProperty("figure", figureEntry.getFigure().toString());
-                        	extra.addProperty("series", figureEntry.getSeries());
-                        	if (figureEntry.getVariant() != null) {
+                            FigureEntry figureEntry = (FigureEntry) objectEntry;
+                            
+                            extra.addProperty("figure", figureEntry.getFigure().toString());
+                            extra.addProperty("series", figureEntry.getSeries());
+                            if (figureEntry.getVariant() != null) {
                                 imgFileName += "inGameVariants/";
-                        		extra.addProperty("variant", figureEntry.getVariant().toString());
-                        	}
+                                extra.addProperty("variant", figureEntry.getVariant().toString());
+                            }
                         } else { // ItemEntry
-                        	ItemEntry itemEntry = (ItemEntry) objectEntry;
-                        	
-                        	extra.addProperty("item", itemEntry.getItem().toString());
-                        	
+                            ItemEntry itemEntry = (ItemEntry) objectEntry;
+                            
+                            extra.addProperty("item", itemEntry.getItem().toString());
+                            
                             imgFileName += (itemEntry.getItem().getType() == ItemType.ADVENTURE_PACK ? "adventurePacks/" : "magicItems/");
                         }
-                		imgFileName += getCamelCase(objectEntry.getName()) + ".png";
+                        imgFileName += getCamelCase(objectEntry.getName()) + ".png";
                         
                         try (InputStream imgStream = Main.class.getResourceAsStream(imgFileName)) {
-                        	Item<JsonElement> item = service.item().add(objectEntry.getName(), extra, imgStream, gameCategory.getId());
+                            Item item = service.item().add(objectEntry.getName(), extra, imgStream, gameCategory.getId());
                         }
                     }
                 }
