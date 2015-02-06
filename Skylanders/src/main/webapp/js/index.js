@@ -4,10 +4,8 @@
         var item = container.data('item');
         var categoryId = container.data('categoryId');
         
-        colApi.item.update(categoryId, {
-            'id': item.id,
-            'owned': !item.owned
-        }).done(function(item) {
+        colApi.itemOwnership.set(categoryId, item.id, !item.owned).done(function(itemOwnership) {
+            item.owned = itemOwnership;
             container.data('item', item);
             container.toggleClass('owned', item.owned).toggleClass('not-owned', !item.owned);
         });
@@ -27,9 +25,14 @@
         $('#figure-list-container').css('display', '');
         $('#figure-list-header').text(category.title);
         
-        colApi.item.list(category.id).done(function(items) {
+        $.when(
+            colApi.item.list(category.id),
+            colApi.itemOwnership.list(category.id)
+        ).done(function(items, ownedItems) {
             var figureList = $('#figure-list').empty();
             items.forEach(function(item) {
+                item.owned = (ownedItems.indexOf(item.id) != -1);
+                
                 figureList.append( 
                     $('<li />').append(
                         $('<div />', {
