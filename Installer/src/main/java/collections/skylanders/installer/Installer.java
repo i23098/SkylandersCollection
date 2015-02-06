@@ -85,7 +85,8 @@ public class Installer {
                         imgFileName += getCamelCase(objectEntry.getName()) + ".png";
                         
                         try (InputStream imgStream = Main.class.getResourceAsStream(imgFileName)) {
-                            Item item = service.item().add(objectEntry.getName(), extra, imgStream, gameCategory.getId());
+                            Item item = new Item(-1, objectEntry.getName(), gameCategory.getId(), extra);
+                            item = service.item().add(item, imgStream);
                         }
                     }
                 }
