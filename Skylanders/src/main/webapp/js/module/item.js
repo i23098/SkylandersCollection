@@ -38,6 +38,10 @@
             
             return dfd.promise();
         }
+        
+        this.getImgUrl = function() {
+            return colApi.item.getImgUrl(gameId, id);
+        };
     }
     
     skyCol.module.Item = function(currentUser) {

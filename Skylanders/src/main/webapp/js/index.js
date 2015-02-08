@@ -33,7 +33,7 @@
                         }).append(
                             $('<span />', {'class': 'figure-name'}).text(item.getTitle())
                         ).append(
-                            $('<img />', {'src': colApi.item.getImgUrl(game.getId(), item.getId())})
+                            $('<img />', {'src': item.getImgUrl()})
                         ).append(
                             $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick).mouseover(function() { $(this).closest('div.figure').addClass('highlight') }).mouseout(function() { $(this).closest('div.figure').removeClass('highlight') })
                         ).data('item', item)
