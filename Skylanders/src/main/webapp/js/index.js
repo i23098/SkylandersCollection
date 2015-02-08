@@ -2,12 +2,10 @@
     var onFigureOwnedClick = function() {
         var container = $(this).closest('div.figure');
         var item = container.data('item');
-        var categoryId = container.data('categoryId');
         
-        colApi.itemOwnership.set(categoryId, item.id, !item.owned).done(function(itemOwnership) {
-            item.owned = itemOwnership;
+        item.setOwned(!item.isOwned()).done(function(item) {
             container.data('item', item);
-            container.toggleClass('owned', item.owned).toggleClass('not-owned', !item.owned);
+            container.toggleClass('owned', item.isOwned()).toggleClass('not-owned', !item.isOwned());
         });
     };
     
@@ -20,30 +18,25 @@
             return;
         }
         
-        var category = $(evt.currentTarget).data('category');
+        var game = $(evt.currentTarget).data('game');
         
         $('#figure-list-container').css('display', '');
-        $('#figure-list-header').text(category.title);
+        $('#figure-list-header').text(game.getTitle());
         
-        $.when(
-            colApi.item.list(category.id),
-            colApi.itemOwnership.list(category.id)
-        ).done(function(items, ownedItems) {
+        skyCol.item.list(game.getId()).done(function(items) {
             var figureList = $('#figure-list').empty();
             items.forEach(function(item) {
-                item.owned = (ownedItems.indexOf(item.id) != -1);
-                
                 figureList.append( 
                     $('<li />').append(
                         $('<div />', {
-                            'class': 'figure ' + (item.owned ? '' : ' not-') + 'owned'
+                            'class': 'figure ' + (item.isOwned() ? '' : ' not-') + 'owned'
                         }).append(
-                            $('<span />', {'class': 'figure-name'}).text(item.title)
+                            $('<span />', {'class': 'figure-name'}).text(item.getTitle())
                         ).append(
-                            $('<img />', {'src': colApi.item.getImgUrl(category.id, item.id)})
+                            $('<img />', {'src': colApi.item.getImgUrl(game.getId(), item.getId())})
                         ).append(
                             $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick).mouseover(function() { $(this).closest('div.figure').addClass('highlight') }).mouseout(function() { $(this).closest('div.figure').removeClass('highlight') })
-                        ).data('item', item).data('categoryId', category.id)
+                        ).data('item', item)
                     )
                 );
             });
@@ -53,12 +46,12 @@
     /**
      * addGameListEntry
      */
-    var addGameListEntry = function(category) {
+    var addGameListEntry = function(game) {
         var li = $('<li />', {'class': 'game-list-entry'})
-            .prop('title', category.title)
-            .data('category', category)
+            .prop('title', game.getTitle())
+            .data('game', game)
             .append(
-                $('<img />', {'src': colApi.category.getImgUrl(category.id)})
+                $('<img />', {'src': game.getImgUrl()})
             ).click(onGameListEntryClick);
         
         $('#game-list').append(li);
@@ -74,7 +67,7 @@
         
         var ids = [];
         $('#game-list > li').each(function(i, el) {
-            ids.push($(el).data('category').id)
+            ids.push($(el).data('game').id)
         });
         
         colApi.category.reorderTopLevelCategories(ids).done(function(categories) {
@@ -111,8 +104,8 @@
             console.log('TODO: Show normal user logged page');                    
         }
         
-        colApi.category.getTopLevelCategories().done(function(categories) {
-            categories.forEach(addGameListEntry);
+        skyCol.game.list().done(function(games) {
+            games.forEach(addGameListEntry);
             
             $('#game-list').sortable({'update': onGameListSort});
             

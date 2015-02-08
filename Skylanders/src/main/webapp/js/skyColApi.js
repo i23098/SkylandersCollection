@@ -1,11 +1,15 @@
-var skyCol = {};
+var skyCol = {
+    module: {}
+};
 
 (function() {
     var loadDfd = $.Deferred();
     skyCol.load = loadDfd.promise();
     
     var scripts = [
-       'js/mozillaPolyfill.js'
+       'js/mozillaPolyfill.js',
+       'js/module/game.js',
+       'js/module/item.js'
     ];
     
     var loader = $LAB;
@@ -13,18 +17,21 @@ var skyCol = {};
         loader = loader.script(scripts[i]);
     }
     
-    loader.wait(function(){
-        var origItemList = colApi.item.list;
+    var init = function(user) {
+        skyCol.game = new skyCol.module.Game();
+        skyCol.item = new skyCol.module.Item(user);
         
+        $(document).ready(function() {
+            loadDfd.resolve(user);
+        });
+    };
+    
+    loader.wait(function(){
         colApi.user.currentUser().done(function(user) {
-            $(document).ready(function() {
-                loadDfd.resolve(user);
-            });
+            init(user);
         }).fail(function() {
             // TODO: check why fail?
-            $(document).ready(function() {
-                loadDfd.resolve(null);
-            });
+            init(null);
         });
     });
 })();
