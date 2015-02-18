@@ -98,7 +98,7 @@
         }
         
         console.log(user);
-        if (user.admin) {
+        if (user.isAdmin) {
             console.log('TODO: Show admin logged page');                    
         } else {
             console.log('TODO: Show normal user logged page');                    
@@ -109,7 +109,7 @@
             
             $('#game-list').sortable({'update': onGameListSort});
             
-            if (user.admin) {
+            if (user.isAdmin) {
                 $('#game-list-add-container').css('display', '');
                 $('#game-list-add-button').click(onAddGameButtonClick);
             }
