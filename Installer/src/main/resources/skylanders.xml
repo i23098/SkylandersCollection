@@ -65,14 +65,14 @@
     
     <game name="GIANTS" title="Giants">
         <figures>
-            <figure type="BOUNCER" variant="GIANT" name="Bouncer" />
-            <figure type="CRUSHER" variant="GIANT" name="Crusher" />
-            <figure type="EYE_BRAWL" variant="GIANT" name="Eye-Brawl" />
-            <figure type="HOT_HEAD" variant="GIANT" name="Hot Head" />
-            <figure type="NINJINI" variant="GIANT" name="Ninjini" />
-            <figure type="SWARM" variant="GIANT" name="Swarm" />
-            <figure type="THUMPBACK" variant="GIANT" name="Thumpback" />
-            <figure type="TREE_REX" variant="GIANT" name="Tree Rex" />
+            <figure type="BOUNCER" name="Bouncer" />
+            <figure type="CRUSHER" name="Crusher" />
+            <figure type="EYE_BRAWL" name="Eye-Brawl" />
+            <figure type="HOT_HEAD" name="Hot Head" />
+            <figure type="NINJINI" name="Ninjini" />
+            <figure type="SWARM" name="Swarm" />
+            <figure type="THUMPBACK" name="Thumpback" />
+            <figure type="TREE_REX" name="Tree Rex" />
             
             <figure type="CHILL" name="Chill" />
             <figure type="FLASHWING" name="Flashwing" />
