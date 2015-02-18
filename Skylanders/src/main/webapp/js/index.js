@@ -33,9 +33,7 @@
                         }).append(
                             $('<span />', {'class': 'figure-name'}).text(item.getTitle())
                         ).append(
-                            $('<img />', {'src': item.getImgUrl()})
-                        ).append(
-                            $('<span />', {'class': 'figure-owned'}).click(onFigureOwnedClick).mouseover(function() { $(this).closest('div.figure').addClass('highlight') }).mouseout(function() { $(this).closest('div.figure').removeClass('highlight') })
+                            $('<img />', {'src': item.getImgUrl()}).click(onFigureOwnedClick).mouseover(function() { $(this).closest('div.figure').addClass('highlight') }).mouseout(function() { $(this).closest('div.figure').removeClass('highlight') })
                         ).data('item', item)
                     )
                 );
