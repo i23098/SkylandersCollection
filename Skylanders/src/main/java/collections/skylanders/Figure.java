@@ -55,6 +55,10 @@ public enum Figure {
     ZAP(WATER),
     ZOOK(LIFE);
     
+    public enum Variant {
+        DARK, LEGENDARY, SIDEKICK, LIGHTCORE, COLOR;
+    }
+    
     private final Element element;
     
     Figure(Element element) {

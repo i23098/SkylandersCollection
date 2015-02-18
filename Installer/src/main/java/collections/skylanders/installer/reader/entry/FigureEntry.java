@@ -1,7 +1,7 @@
 package collections.skylanders.installer.reader.entry;
 
 import collections.skylanders.Figure;
-import collections.skylanders.Variant;
+import collections.skylanders.Figure.Variant;
 
 public class FigureEntry extends ObjectEntry {
     protected final Figure figure;

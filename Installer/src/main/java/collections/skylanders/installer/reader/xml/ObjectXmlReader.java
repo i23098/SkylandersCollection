@@ -4,8 +4,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import collections.skylanders.Figure;
+import collections.skylanders.Figure.Variant;
 import collections.skylanders.Item;
-import collections.skylanders.Variant;
 import collections.skylanders.installer.reader.Reader;
 import collections.skylanders.installer.reader.entry.FigureEntry;
 import collections.skylanders.installer.reader.entry.ItemEntry;
