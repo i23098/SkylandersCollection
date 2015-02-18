@@ -29,9 +29,9 @@ public class ObjectXmlReader implements Reader<ObjectEntry> {
     public ObjectEntry next() {
         ObjectEntry objectEntry;
         if (curItem < figuresNodeList.getLength()) {
-        	objectEntry = getFigureEntry(curItem);
+            objectEntry = getFigureEntry(curItem);
         } else {
-        	objectEntry = getItemEntry(curItem - figuresNodeList.getLength());
+            objectEntry = getItemEntry(curItem - figuresNodeList.getLength());
         }
         
         curItem++;
@@ -47,19 +47,19 @@ public class ObjectXmlReader implements Reader<ObjectEntry> {
         String name = nodeElement.getAttribute("name");
         Variant variant = null;
         if (nodeElement.hasAttribute("variant")) {
-        	variant = Variant.valueOf(nodeElement.getAttribute("variant"));
+            variant = Variant.valueOf(nodeElement.getAttribute("variant"));
         }
         int series = 1;
         if (nodeElement.hasAttribute("series")) {
-        	series = Integer.parseInt(nodeElement.getAttribute("series"));
+            series = Integer.parseInt(nodeElement.getAttribute("series"));
         }
         
         return new FigureEntry(figure, name, variant, series);
     }
     
     ItemEntry getItemEntry(int i) {
-    	Element nodeElement = (Element) itemsNodeList.item(i);
-    	
+        Element nodeElement = (Element) itemsNodeList.item(i);
+        
         String type = nodeElement.getAttribute("type");
         Item itemType = Item.valueOf(type);
         String name = nodeElement.getAttribute("name");
