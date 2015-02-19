@@ -108,24 +108,43 @@
             <figure type="ZAP" series="2" name="Zap" />
             <figure type="ZOOK" series="2" name="Zook" />
             
-            <figure type="CHILL" variant="LIGHTCORE" name="Chill LightCore" />
-            <figure type="DROBOT" variant="LIGHTCORE" name="Drobot LightCore" />
-            <figure type="ERUPTOR" variant="LIGHTCORE" name="Eruptor LightCore" />
-            <figure type="HEX" variant="LIGHTCORE" name="Hex LightCore" />
-            <figure type="JET_VAC" variant="LIGHTCORE" name="Jet-Vac LightCore" />
-            <figure type="POP_FIZZ" variant="LIGHTCORE" name="Pop Fizz LightCore" />
-            <figure type="PRISM_BREAK" variant="LIGHTCORE" name="Prism Break LightCore" />
-            <figure type="SHROOMBOOM" variant="LIGHTCORE" name="Shroomboom LightCore" />
+            <figure type="CHILL" category="LIGHTCORE" name="Chill LightCore" />
+            <figure type="DROBOT" category="LIGHTCORE" name="Drobot LightCore" />
+            <figure type="ERUPTOR" category="LIGHTCORE" name="Eruptor LightCore" />
+            <figure type="HEX" category="LIGHTCORE" name="Hex LightCore" />
+            <figure type="JET_VAC" category="LIGHTCORE" name="Jet-Vac LightCore" />
+            <figure type="POP_FIZZ" category="LIGHTCORE" name="Pop Fizz LightCore" />
+            <figure type="PRISM_BREAK" category="LIGHTCORE" name="Prism Break LightCore" />
+            <figure type="SHROOMBOOM" category="LIGHTCORE" name="Shroomboom LightCore" />
             
-            <!-- missing Legendary variants, at least -->
+            <figure type="TREE_REX" variant="COLOR" name="Gnarly Tree Rex" />
+            <figure type="CRUSHER" variant="COLOR" name="Granite Crusher" />
+            <figure type="NINJINI" variant="COLOR" name="Scarlet Ninjini" />
+            <figure type="DOUBLE_TROUBLE" variant="COLOR" series="2" name="Royal Double Trouble" />
+            <figure type="FLASHWING" variant="COLOR" name="Jade Flashwing" />
+            <figure type="HOT_DOG" variant="COLOR" name="Molten Hot Dog" />
+            <figure type="WHIRLWIND" variant="COLOR" name="Polar Whirlwind" />
+            <figure type="POP_FIZZ" variant="COLOR" name="Punch Pop Fizz" />
+            
+            <figure type="BOUNCER" variant="LEGENDARY" name="Legendary Bouncer" />
+            <figure type="CHILL" category="LIGHTCORE" variant="LEGENDARY" name="Legendary LightCore Chill" />
+            <figure type="IGNITOR" variant="LEGENDARY" name="Legendary Ignitor" />
+            <figure type="JET_VAC" variant="LEGENDARY" name="Legendary Jet-Vac" />
+            <figure type="SLAM_BAM" variant="LEGENDARY" name="Legendary Slam Bam" />
+            <figure type="STEALTH_ELF" variant="LEGENDARY" name="Legendary Stealth Elf" />
+            
+            <figure type="TREE_REX" variant="SIDEKICK" name="Sidekick Barkley" />
+            <figure type="EYE_BRAWL" variant="SIDEKICK" name="Sidekick Eye Small" />
+            <figure type="NINJINI" variant="SIDEKICK" name="Sidekick Mini Jini" />
+            <figure type="THUMPBACK" variant="SIDEKICK" name="Sidekick Thumpling" />
         </figures>
         
-        <!-- items>        
-            <item type="DRAGONFIRE_CANON" name="Dragonfire Canon" />
-            <item type="GOLDEN_DRAGONFIRE_CANON" name="Golden Dragonfire Canon" />
+        <items>        
+            <item type="DRAGONFIRE_CANNON" name="Dragonfire Cannon" />
+            <item type="GOLDEN_DRAGONFIRE_CANNON" name="Golden Dragonfire Cannon" />
             <item type="PLATINUM_TREASURE_CHEST" name="Platinum Treasure Chest" />
             <item type="SCORPION_STRIKER_CATAPULT" name="Scorpion Striker Catapult" />
-        </items -->
+        </items>
     </game>
     
     <game name="SWAP_FORCE" title="Swap Force">

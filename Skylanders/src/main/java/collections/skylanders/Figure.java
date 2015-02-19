@@ -7,19 +7,19 @@ import java.util.LinkedList;
 
 public enum Figure {
     BASH(EARTH),
-    BOUNCER(TECH),
+    BOUNCER(TECH, Category.GIANT),
     BOOMER(TECH),
     CAMO(EARTH),
     CHILL(WATER),
     CHOP_CHOP(UNDEAD),
-    CRUSHER(EARTH),
+    CRUSHER(EARTH, Category.GIANT),
     CYNDER(UNDEAD),
     DINO_RANG(EARTH),
     DOUBLE_TROUBLE(MAGIC),
     DRILL_SERGEANT(TECH),
     DROBOT(TECH),
     ERUPTOR(FIRE),
-    EYE_BRAWL(UNDEAD),
+    EYE_BRAWL(UNDEAD, Category.GIANT),
     FLAMESLINGER(FIRE),
     FLASHWING(EARTH),
     FRIGHT_RIDER(UNDEAD),
@@ -27,11 +27,11 @@ public enum Figure {
     GILL_GRUNT(WATER),
     HEX(UNDEAD),
     HOT_DOG(FIRE),
-    HOT_HEAD(FIRE),
+    HOT_HEAD(FIRE, Category.GIANT),
     IGNITOR(FIRE),
     JET_VAC(AIR),
     LIGHTNING_ROD(AIR),
-    NINJINI(MAGIC),
+    NINJINI(MAGIC, Category.GIANT),
     POP_FIZZ(TECH),
     PRISM_BREAK(EARTH),
     SHROOMBOOM(EARTH),
@@ -42,10 +42,10 @@ public enum Figure {
     STEALTH_ELF(LIFE),
     STUMP_SMASH(LIFE),
     SUNBURN(FIRE),
-    SWARM(AIR),
+    SWARM(AIR, Category.GIANT),
     TERRAFIN(EARTH),
-    THUMPBACK(WATER),
-    TREE_REX(LIFE),
+    THUMPBACK(WATER, Category.GIANT),
+    TREE_REX(LIFE, Category.GIANT),
     TRIGGER_HAPPY(TECH),
     VOODOOD(TECH),
     WARNADO(AIR),
@@ -56,17 +56,31 @@ public enum Figure {
     ZOOK(LIFE);
     
     public enum Variant {
-        DARK, LEGENDARY, SIDEKICK, LIGHTCORE, COLOR;
+        DARK, LEGENDARY, SIDEKICK, COLOR;
+    }
+    
+    public enum Category {
+        REGULAR, GIANT, LIGHTCORE;
     }
     
     private final Element element;
+    private final Category type;
     
     Figure(Element element) {
+        this(element, Category.REGULAR);
+    }
+    
+    Figure(Element element, Category type) {
         this.element = element;
+        this.type = type;
     }
     
     public Element getElement() {
         return element;
+    }
+    
+    public Category getType() {
+        return type;
     }
     
     Collection<Figure> getFigures(Element element) {
