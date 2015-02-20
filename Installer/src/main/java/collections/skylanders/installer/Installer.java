@@ -19,7 +19,7 @@ import collections.skylanders.installer.reader.entry.ObjectEntry;
 import com.google.gson.JsonObject;
 
 public class Installer {
-    private Category getCategory(List<collections.serverapi.Category> categoryList, String gameTitle) {
+    private Category getCategory(List<Category> categoryList, String gameTitle) {
         return categoryList.stream()
                 .filter(c -> c.getTitle().equals(gameTitle))
                 .findFirst().orElse(null);
@@ -37,12 +37,12 @@ public class Installer {
     
     public void install(Reader<GameEntry> gameXmlReader) throws IOException, SQLException {
         try (CollectionsTransactionalService service = CollectionsTransactionalServiceFactory.begin()) {
-            List<collections.serverapi.Category> gameCategoryList = service.category().getTopLevelCategories();
+            List<Category> gameCategoryList = service.category().getTopLevelCategories();
             
             for (GameEntry gameEntry : gameXmlReader) {
                 String imgDir = "/images/" + getCamelCase(gameEntry.game.toString()) + "/";
                 
-                collections.serverapi.Category gameCategory = getCategory(gameCategoryList, gameEntry.title);
+                Category gameCategory = getCategory(gameCategoryList, gameEntry.title);
                 if (gameCategory == null) {
                     System.out.println(gameEntry.title);
                     
