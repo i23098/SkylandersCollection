@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 import collections.serverapi.Category;
 import collections.serverapi.Item;
@@ -20,14 +19,10 @@ import collections.skylanders.installer.reader.entry.ObjectEntry;
 import com.google.gson.JsonObject;
 
 public class Installer {
-    private collections.serverapi.Category getCategory(List<collections.serverapi.Category> categoryList, String gameTitle) {
-        for (collections.serverapi.Category category : categoryList) {
-            if (category.getTitle().equals(gameTitle)) {
-                return category;
-            }
-        }
-        
-        return null;
+    private Category getCategory(List<collections.serverapi.Category> categoryList, String gameTitle) {
+        return categoryList.stream()
+                .filter(c -> c.getTitle().equals(gameTitle))
+                .findFirst().orElse(null);
     }
     
     private Item getItem(List<Item> itemList, String title) {
