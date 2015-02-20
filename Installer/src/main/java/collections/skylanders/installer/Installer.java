@@ -26,13 +26,9 @@ public class Installer {
     }
     
     private Item getItem(List<Item> itemList, String title) {
-        for (Item item : itemList) {
-            if (item.getTitle().equals(title)) {
-                return item;
-            }
-        }
-        
-        return null;
+        return itemList.stream()
+                .filter(i -> i.getTitle().equals(title))
+                .findFirst().orElse(null);
     }
     
     public void install(Reader<GameEntry> gameXmlReader) throws IOException, SQLException {
