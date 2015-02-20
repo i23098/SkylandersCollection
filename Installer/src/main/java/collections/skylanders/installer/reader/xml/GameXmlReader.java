@@ -1,5 +1,7 @@
 package collections.skylanders.installer.reader.xml;
 
+import java.util.Iterator;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -9,12 +11,20 @@ import collections.skylanders.installer.reader.Reader;
 import collections.skylanders.installer.reader.entry.GameEntry;
 
 public class GameXmlReader implements Reader<GameEntry> {
-    NodeList gamesNodeList;
+    private final NodeList gamesNodeList;
     int curGame;
     
     public GameXmlReader(Document xmlDocument) {
-        gamesNodeList = xmlDocument.getElementsByTagName("game");
+        this(xmlDocument.getElementsByTagName("game"));
+    }
+    private GameXmlReader(NodeList gamesNodeList) {
+        this.gamesNodeList = gamesNodeList;
         curGame = 0;
+    }
+    
+    @Override
+    public Iterator<GameEntry> iterator() {
+        return new GameXmlReader(gamesNodeList);
     }
     
     public boolean hasNext() {

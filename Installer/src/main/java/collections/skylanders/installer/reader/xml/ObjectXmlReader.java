@@ -1,5 +1,7 @@
 package collections.skylanders.installer.reader.xml;
 
+import java.util.Iterator;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -12,14 +14,24 @@ import collections.skylanders.installer.reader.entry.ItemEntry;
 import collections.skylanders.installer.reader.entry.ObjectEntry;
 
 public class ObjectXmlReader implements Reader<ObjectEntry> {
-    NodeList figuresNodeList, itemsNodeList;
+    private final NodeList figuresNodeList;
+    private final NodeList itemsNodeList;
     int curItem;
     
     public ObjectXmlReader(Element gameNodeElement) {
-        figuresNodeList = gameNodeElement.getElementsByTagName("figure");
-        itemsNodeList = gameNodeElement.getElementsByTagName("item");
+        this(gameNodeElement.getElementsByTagName("figure"), gameNodeElement.getElementsByTagName("item"));
+    }
+    
+    private ObjectXmlReader(NodeList figuresNodeList, NodeList itemsNodeList) {
+        this.figuresNodeList = figuresNodeList;
+        this.itemsNodeList = itemsNodeList;
         
         curItem = 0;
+    }
+    
+    @Override
+    public Iterator<ObjectEntry> iterator() {
+        return new ObjectXmlReader(figuresNodeList, itemsNodeList);
     }
     
     public boolean hasNext() {

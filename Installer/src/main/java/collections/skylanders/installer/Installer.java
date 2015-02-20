@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
+import collections.serverapi.Category;
 import collections.serverapi.Item;
 import collections.serverapi.service.CollectionsTransactionalService;
 import collections.serverapi.service.CollectionsTransactionalServiceFactory;
@@ -42,9 +44,7 @@ public class Installer {
         try (CollectionsTransactionalService service = CollectionsTransactionalServiceFactory.begin()) {
             List<collections.serverapi.Category> gameCategoryList = service.category().getTopLevelCategories();
             
-            while (gameXmlReader.hasNext()) {
-                GameEntry gameEntry = gameXmlReader.next();
-                
+            for (GameEntry gameEntry : gameXmlReader) {
                 String imgDir = "/images/" + getCamelCase(gameEntry.game.toString()) + "/";
                 
                 collections.serverapi.Category gameCategory = getCategory(gameCategoryList, gameEntry.title);
@@ -57,9 +57,7 @@ public class Installer {
                 }
                 
                 List<Item> objectList = service.item().getItems(gameCategory.getId());
-                while (gameEntry.objectReader.hasNext()) {
-                    ObjectEntry objectEntry = gameEntry.objectReader.next();
-                    
+                for (ObjectEntry objectEntry : gameEntry.objectReader) {
                     Item objectItem = getItem(objectList, objectEntry.getName());
                     if (objectItem == null) {
                         System.out.println(objectEntry.getName());
