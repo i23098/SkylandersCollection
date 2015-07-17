@@ -10,6 +10,7 @@ if (typeof jQuery == undefined) {
     document.write('<script>js/lib/jquery-2.1.3.min.js<\/script>');
 }
 </script>
+<script src="js/lib/jquery.storageapi-1.7.3.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[

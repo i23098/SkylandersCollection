@@ -3,10 +3,14 @@
         $('#loginForm').submit(function() {
             console.log('login');
             
-            var login = $('#login-username').val();
+            var username = $('#login-username').val();
             var password = $('#login-password').val();
             
-            colApi.user.login(login, password).done(function() {
+            // FIXME skyColAPI...
+            colApi.user.setAuthDetails(username, password).done(function(user) {
+                $.sessionStorage.set('skyColUsername', username);
+                $.sessionStorage.set('skyColPassword', password);
+                
                 document.location.href = 'index.jsp';
             }).fail(function() {
                 alert('Error logging in');

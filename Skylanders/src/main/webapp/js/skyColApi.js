@@ -8,6 +8,7 @@ var skyCol = {
     
     var scripts = [
        'js/mozillaPolyfill.js',
+       'js/lib/jquery.storageapi-1.7.3.js',
        'js/module/game.js',
        'js/module/item.js'
     ];
@@ -27,11 +28,17 @@ var skyCol = {
     };
     
     loader.wait(function(){
-        colApi.user.currentUser().done(function(user) {
-            init(user);
-        }).fail(function() {
-            // TODO: check why fail?
+        var username = $.sessionStorage.get('skyColUsername');
+        if (username && username != '') {
+            var password = $.sessionStorage.get('skyColPassword');
+            colApi.user.setAuthDetails(username, password).done(function(user) {
+                init(user);
+            }).fail(function() {
+                // TODO: check why fail?
+                init(null);
+            });
+        } else {
             init(null);
-        });
+        }
     });
 })();
